@@ -1,0 +1,21 @@
+<header class="topbar-container">
+  <div class="logo-wrapper">
+    <img src="logo.png" alt="Logo Stimular" class="logo-img">
+  </div>
+
+  <button class="menu-toggle" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen()">
+    <i class="bi" [ngClass]="isMenuOpen() ? 'bi-x-lg' : 'bi-list'"></i>
+  </button>
+
+  <nav class="nav-links" [class.open]="isMenuOpen()">
+    @for (link of navLinks; track link.path) {
+      <a 
+        [href]="link.path" 
+        class="nav-item" 
+        [class.active]="activeLink() === link.path"
+        (click)="setActive(link.path)">
+        {{ link.label }}
+      </a>
+    }
+  </nav>
+</header>

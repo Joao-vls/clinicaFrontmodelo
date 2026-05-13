@@ -1,0 +1,64 @@
+<section class="contact-section">
+  <div class="contact-container">
+    
+    <div class="info-block">
+      <h2 class="title-serif">Fale Conosco</h2>
+      
+      <p class="text-condensed">
+        Tem alguma dúvida, sugestão ou precisa solicitar um serviço? 
+        Estamos prontos para ouvir você! Preencha o formulário ao lado 
+        com seu pedido ou observação e nossa equipe entrará em contato 
+        o mais rápido possível.
+      </p>
+      
+      <p class="footer-note">
+        Seu bem-estar e tranquilidade começam aqui.
+      </p>
+    </div>
+
+    <div class="form-block">
+      <h3 class="form-title">Formulário de pedido</h3>
+      
+      <form (ngSubmit)="onSubmit()">
+        
+        <div class="input-group">
+          <label for="email">Endereço de e-mail</label>
+          <input type="email" id="email" name="email" required autocomplete="off">
+        </div>
+
+        <div class="input-group">
+          <label for="phone">Telefone</label>
+          <input type="tel" id="phone" name="phone" required autocomplete="off">
+        </div>
+
+        <div class="input-group">
+          <label for="message">Dúvidas e observações</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+
+        <div class="sentiment-group">
+          <label>Sentimento</label>
+          <div class="emoji-container">
+            @for (item of sentiments; track item.value) {
+              <button 
+                type="button" 
+                class="emoji-btn" 
+                [class.active]="selectedSentiment() === item.value"
+                (click)="selectSentiment(item.value)"
+                [attr.aria-label]="item.label">
+                <i class="bi" [ngClass]="item.icon"></i>
+              </button>
+            }
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Enviar pedido</button>
+      </form>
+      
+      <span class="security-text">
+        Seu nome de perfil no Canva será compartilhado. Nunca envie senhas.
+      </span>
+    </div>
+
+  </div>
+</section>

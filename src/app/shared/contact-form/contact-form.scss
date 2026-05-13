@@ -1,0 +1,211 @@
+.contact-section {
+  width: 100%;
+  padding: 100px 0;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .contact-container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  }
+
+  /* ================================================= */
+  /* BLOCO ESQUERDO (INFORMATIVO) */
+  /* ================================================= */
+  .info-block {
+    flex: 1;
+    background: linear-gradient(180deg, #7cb1db 0%, #b3e3f4 100%);
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #ffffff;
+
+    .title-serif {
+      font-family: 'ChunkFive', 'Alfa Slab One', 'Georgia', serif;
+      font-size: clamp(2.5rem, 4vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 40px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .text-condensed {
+      font-family: 'Impact', 'Oswald', 'Arial Narrow', sans-serif;
+      font-size: clamp(1.1rem, 1.5vw, 1.5rem);
+      line-height: 1.4;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      opacity: 0.95;
+      text-align: center;
+      margin-bottom: auto;
+    }
+
+    .footer-note {
+      font-family: 'Impact', 'Oswald', 'Arial Narrow', sans-serif;
+      font-size: clamp(0.9rem, 1.1vw, 1.1rem);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-top: 40px;
+    }
+  }
+
+  /* ================================================= */
+  /* BLOCO DIREITO (FORMULÁRIO) */
+  /* ================================================= */
+  .form-block {
+    flex: 1;
+    background-color: #121f66; // Azul marinho profundo idêntico à imagem
+    padding: 60px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+
+    .form-title {
+      font-family: 'Georgia', serif;
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 35px;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 25px;
+
+      label {
+        font-family: 'Arial', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        opacity: 0.9;
+      }
+
+      input, textarea {
+        background-color: #1a2983; // Tom de azul ligeiramente mais claro para os inputs
+        border: 1px solid #2a3c9c;
+        border-radius: 6px;
+        padding: 14px;
+        color: #ffffff;
+        font-size: 1rem;
+        font-family: 'Arial', sans-serif;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+        &:focus {
+          outline: none;
+          border-color: #5572e2;
+          box-shadow: 0 0 8px rgba(85, 114, 226, 0.4);
+        }
+      }
+
+      textarea {
+        resize: none;
+      }
+    }
+
+    /* SELETOR DE SENTIMENTOS */
+    .sentiment-group {
+      margin-bottom: 35px;
+
+      label {
+        font-family: 'Arial', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 12px;
+      }
+
+      .emoji-container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+      }
+
+      .emoji-btn {
+        background-color: #202e85;
+        border: none;
+        border-radius: 8px;
+        height: 55px;
+        color: #ffffff;
+        font-size: 1.4rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+
+        &:hover {
+          background-color: #2b3ca7;
+        }
+
+        &.active {
+          background-color: #4f6bd6; // Cor de destaque ao selecionar
+          transform: scale(1.05);
+        }
+      }
+    }
+
+    /* BOTÃO SUBMIT */
+    .submit-btn {
+      background-color: #5c6bc0; // Azul médio suave do botão original
+      color: #ffffff;
+      border: none;
+      border-radius: 25px; // Formato de pílula arredondado igual à imagem
+      padding: 16px;
+      width: 100%;
+      font-family: 'Georgia', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+
+      &:hover {
+        background-color: #4c5aa9;
+        transform: translateY(-1px);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+
+    .security-text {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      text-align: center;
+      margin-top: 15px;
+      opacity: 0.7;
+    }
+  }
+}
+
+/* ================================================= */
+/* RESPONSIVIDADE (MOBILE) */
+/* ================================================= */
+@media (max-width: 900px) {
+  .contact-section {
+    padding: 40px 0;
+
+    .contact-container {
+      flex-direction: column;
+      width: 92%;
+    }
+
+    .info-block, .form-block {
+      padding: 40px 25px;
+    }
+
+    .info-block {
+      .title-serif { text-align: center; }
+      .footer-note { text-align: center; margin-top: 30px; }
+    }
+  }
+}

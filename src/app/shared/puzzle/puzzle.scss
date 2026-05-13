@@ -1,0 +1,166 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.puzzle-wrapper {
+  // Tamanho aumentado para máxima presença visual
+  --size: 44vw; 
+  --max-size: 580px; 
+  --piece-size: min(var(--size), var(--max-size));
+  
+  // Conector proporcional ao novo tamanho
+  --connector: calc(var(--piece-size) * 0.19); 
+  --bg-site: #ffffff; 
+
+  display: grid;
+  grid-template-columns: repeat(2, var(--piece-size));
+  justify-content: center;
+  margin: 180px auto;
+  gap: 0;
+}
+
+.piece {
+  position: relative;
+  width: var(--piece-size);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: visible;
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: transform 1.4s cubic-bezier(.22,1,.36,1), opacity 1.2s ease;
+
+  .inner {
+    // Área de segurança para o texto não bater nos pinos
+    width: 82%; 
+    z-index: 30;
+    text-align: center;
+    color: white;
+
+    h2 {
+      font-size: clamp(1.8rem, 4.2vw, 4.5rem); 
+      line-height: 0.92;
+      font-weight: 800;
+      margin-bottom: 25px;
+      letter-spacing: -1px;
+    }
+    p {
+      font-size: clamp(0.8rem, 1.1vw, 1.15rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.4;
+    }
+  }
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    width: var(--connector);
+    height: var(--connector);
+    border-radius: 50%;
+  }
+}
+
+/* --- LOGICA DE ENCAIXE E Z-INDEX --- */
+
+.yellow {
+  background: #f4ab00;
+  z-index: 10;
+  transform: translate(-140px, -70px);
+  margin-right: calc(var(--connector) / -2.4); 
+  margin-bottom: calc(var(--connector) / -2.4);
+
+  &::after { // PINO DIREITA
+    background: #f4ab00;
+    right: calc(var(--connector) / -2);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.blue {
+  background: #3b4f94;
+  z-index: 5;
+  transform: translate(140px, -70px);
+  margin-bottom: calc(var(--connector) / -2.4);
+
+  &::before { // BURACO ESQUERDA
+    background: var(--bg-site);
+    left: calc(var(--connector) / -2);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+  &::after { // PINO BAIXO
+    background: #3b4f94;
+    bottom: calc(var(--connector) / -2);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 11;
+  }
+}
+
+.green {
+  background: #00853d;
+  z-index: 15;
+  transform: translate(-140px, 70px);
+  margin-right: calc(var(--connector) / -2.4);
+
+  &::before { // PINO CIMA
+    background: #00853d;
+    top: calc(var(--connector) / -2);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &::after { // PINO DIREITA
+    background: #00853d;
+    right: calc(var(--connector) / -2);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 16;
+  }
+}
+
+.orange {
+  background: #ff6f2f;
+  z-index: 1;
+  transform: translate(140px, 70px);
+
+  &::before { // BURACO CIMA
+    background: var(--bg-site);
+    top: calc(var(--connector) / -2);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+  &::after { // BURACO ESQUERDA
+    background: var(--bg-site);
+    left: calc(var(--connector) / -2);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+}
+
+.piece.show {
+  opacity: 1;
+  transform: translate(0, 0) !important;
+}
+
+@media (max-width: 900px) {
+  .puzzle-wrapper {
+    grid-template-columns: 1fr;
+    --piece-size: 92vw;
+    margin: 80px auto;
+    gap: 10px;
+  }
+  .piece {
+    margin: 0 auto !important;
+    transform: translateY(60px);
+    &::before, &::after { display: none; }
+    .inner { width: 100%; padding: 40px; }
+  }
+}

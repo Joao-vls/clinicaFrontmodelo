@@ -1,0 +1,22 @@
+<section class="doctor-card" 
+         [class.reverse]="direction === 'right'" 
+         #cardRef 
+         [class.show]="isVisible()">
+  
+  <!-- Fundo com efeito Panorama -->
+  <div class="panorama-bg" [style.backgroundImage]="'url(' + bgImage + ')'"></div>
+
+  <div class="content-wrapper">
+    <!-- Imagem do Médico (Efeito de surgimento) -->
+    <div class="doctor-image">
+      <img [src]="doctorImg" [alt]="name">
+    </div>
+
+    <!-- Texto e Conteúdo -->
+    <div class="doctor-info">
+      <h2>{{ name }} - <span>{{ specialty }}</span></h2>
+      <p>{{ description }}</p>
+      <button class="btn-more">SAIBA MAIS</button>
+    </div>
+  </div>
+</section>

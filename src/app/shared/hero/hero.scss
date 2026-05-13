@@ -1,0 +1,99 @@
+.hero {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #a3c1da; // Tom de azul do céu da imagem
+  background: linear-gradient(135deg, #b8d2e7 0%, #8fb2d1 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 40px 0;
+
+  .hero-container {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    max-width: 1400px;
+    gap: 40px;
+  }
+
+  .hero-content {
+    flex: 1;
+    color: #ffffff;
+    z-index: 2;
+
+    .logo-text {
+      margin-bottom: 40px;
+      
+      h1 {
+        font-family: 'Serif', Georgia, serif; // Use uma fonte serifada elegante
+        font-size: clamp(3rem, 6vw, 5.5rem);
+        line-height: 0.85;
+        font-weight: 400;
+        
+        span {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .description {
+      font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+      line-height: 1.6;
+      font-weight: 700;
+      max-width: 550px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: justify;
+    }
+  }
+
+  .hero-image-wrapper {
+    flex: 1.2;
+    display: flex;
+    justify-content: flex-end;
+    perspective: 1000px;
+
+    .image-clip {
+      width: 100%;
+      max-width: 700px;
+      // Cria o efeito de inclinação/profundidade da foto original
+      transform: rotateY(-5deg) rotateX(2deg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: -20px 20px 50px rgba(0,0,0,0.15);
+
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+        // Ajuste o brilho/contraste para casar com o layout
+        filter: saturate(1.1) brightness(1.05);
+      }
+    }
+  }
+}
+
+/* Responsividade para Mobile */
+@media (max-width: 992px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 60px;
+  }
+
+  .hero-content {
+    .description {
+      margin: 0 auto;
+    }
+  }
+
+  .hero-image-wrapper {
+    width: 100%;
+    justify-content: center;
+    
+    .image-clip {
+      transform: none; // Remove a inclinação no mobile para melhor visibilidade
+    }
+  }
+}
