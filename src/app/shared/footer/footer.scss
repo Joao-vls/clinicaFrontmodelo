@@ -1,0 +1,137 @@
+.footer-container {
+  width: 100%;
+  background-color: #008fa1; // Cor base da image_76d5fd.jpg
+  background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+  background-size: 24px 24px; // Simulação sutil da textura da imagem
+  color: #ffffff;
+  padding: 80px 0 30px 0;
+  font-family: 'Arial', sans-serif;
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    padding: 0 20px;
+  }
+
+  .footer-column {
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-transform: none;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin-bottom: 8px;
+        
+        a {
+          color: #ffffff;
+          text-decoration: none;
+          font-size: 0.9rem;
+          opacity: 0.9;
+          transition: opacity 0.2s;
+
+          &:hover {
+            opacity: 1;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .trust-seal {
+      margin-top: 30px;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      font-weight: 600;
+      max-width: 250px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 40px;
+
+      p {
+        font-weight: 700;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 20px;
+      font-size: 1.8rem;
+
+      a {
+        color: #ffffff;
+        transition: transform 0.2s;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 992px) {
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 50px 20px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-content {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+    
+    .footer-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .trust-seal {
+      margin: 20px auto;
+    }
+
+    .social-icons {
+      justify-content: center;
+    }
+  }
+}

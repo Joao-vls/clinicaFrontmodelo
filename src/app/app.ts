@@ -5,6 +5,7 @@ import { Hero } from "./shared/hero/hero";
 import { DoctorCard } from './shared/doctor-card/doctor-card';
 import { ContactFormComponent } from "./shared/contact-form/contact-form";
 import { Topbar } from './shared/topbar/topbar';
+import { Footer } from "./shared/footer/footer";
 
 interface DoctorData {
   name: string;
@@ -17,7 +18,7 @@ interface DoctorData {
 
 @Component({
   selector: 'app-root',
-  imports: [Puzzle, Hero, DoctorCard, ContactFormComponent,Topbar],
+  imports: [Puzzle, Hero, DoctorCard, ContactFormComponent, Topbar, Footer],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

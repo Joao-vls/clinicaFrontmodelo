@@ -1,4 +1,8 @@
-import { Component, Input, signal, ElementRef, AfterViewInit, viewChild } from '@angular/core';
+import { 
+  Component, Input, signal, ElementRef, AfterViewInit, viewChild, 
+  inject, PLATFORM_ID 
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common'; // Importação essencial
 
 @Component({
   selector: 'app-doctor-card',
@@ -17,16 +21,27 @@ export class DoctorCard implements AfterViewInit {
   isVisible = signal(false);
   cardRef = viewChild<ElementRef>('cardRef');
 
-  ngAfterViewInit() {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        this.isVisible.set(true);
-        observer.disconnect();
-      }
-    }, { threshold: 0.2 });
+  // Injeta o ID da plataforma para checar se é browser ou servidor
+  private platformId = inject(PLATFORM_ID);
 
-    if (this.cardRef()) {
-      observer.observe(this.cardRef()!.nativeElement);
+  ngAfterViewInit() {
+    // Só executa o IntersectionObserver se estiver no navegador
+    if (isPlatformBrowser(this.platformId)) {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          this.isVisible.set(true);
+          observer.disconnect();
+        }
+      }, { threshold: 0.2 });
+
+      const element = this.cardRef();
+      if (element) {
+        observer.observe(element.nativeElement);
+      }
+    } else {
+      // Opcional: No servidor (SSR), você pode definir como true 
+      // para o conteúdo já vir renderizado no HTML inicial
+      this.isVisible.set(true);
     }
   }
 }
